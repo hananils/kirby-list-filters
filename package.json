@@ -8,6 +8,6 @@
         "license": "file:vendor/hananils/plus/src/Plus"
     },
     "devDependencies": {
-        "kirbyup": "^0.14.1"
+        "kirbyup": "^3.1.13"
     }
 }
