@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "5a14daf6d1ba42b6ba744b2f23d1fa6b",
+    "packages": [
+        {
+            "name": "hananils/plus",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:hananils/plus.git",
+                "reference": "ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hananils/plus/zipball/ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40",
+                "reference": "ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "helper",
+            "autoload": {
+                "psr-4": {
+                    "Hananils\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Büro für Gestaltung",
+                    "email": "buero@hananils.de"
+                }
+            ],
+            "description": "Handler for our Plus plugins",
+            "support": {
+                "source": "https://github.com/hananils/plus/tree/main",
+                "issues": "https://github.com/hananils/plus/issues"
+            },
+            "time": "2024-10-07T14:23:41+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "hananils/plus": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

@@ -1,0 +1,46 @@
+{
+    "packages": [
+        {
+            "name": "hananils/plus",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:hananils/plus.git",
+                "reference": "ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hananils/plus/zipball/ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40",
+                "reference": "ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40",
+                "shasum": ""
+            },
+            "time": "2024-10-07T14:23:41+00:00",
+            "default-branch": true,
+            "type": "helper",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Hananils\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Büro für Gestaltung",
+                    "email": "buero@hananils.de"
+                }
+            ],
+            "description": "Handler for our Plus plugins",
+            "support": {
+                "source": "https://github.com/hananils/plus/tree/main",
+                "issues": "https://github.com/hananils/plus/issues"
+            },
+            "install-path": "../hananils/plus"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

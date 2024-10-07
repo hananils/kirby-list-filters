@@ -1,0 +1,25 @@
+{
+    "name": "hananils/kirby-list-filters",
+    "description": "",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "homepage": "https://kirby.hananils.de/plugins/list-filters",
+    "authors": [
+        {
+            "name": "hana+nils · Büro für Gestaltung",
+            "email": "buero@hananils.de"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/hananils/plus.git"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
+    "require": {
+        "hananils/plus": "dev-main"
+    }
+}
