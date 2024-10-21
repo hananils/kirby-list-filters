@@ -4,7 +4,7 @@
         'pretty_version' => '1.0.0',
         'version' => '1.0.0.0',
         'reference' => null,
-        'type' => 'library',
+        'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => false,
@@ -14,7 +14,7 @@
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
             'reference' => null,
-            'type' => 'library',
+            'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
@@ -22,7 +22,7 @@
         'hananils/plus' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ff111ddbb6700ec9cff3b6b3d0d49fc0e89b9e40',
+            'reference' => '35913f5b795359f2211cebd3c57c310f0a3747a7',
             'type' => 'helper',
             'install_path' => __DIR__ . '/../hananils/plus',
             'aliases' => array(

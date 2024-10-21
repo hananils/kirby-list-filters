@@ -4,7 +4,14 @@ namespace Hananils;
 
 use Hananils\Plus\LicenseManager;
 use Kirby\Cms\app as Kirby;
+use Kirby\Data\Json;
 use Kirby\Toolkit\Str;
+
+$licenseManager = new LicenseManager(
+    'hananils/list-filters',
+    'List Filters',
+    root: __DIR__
+);
 
 /**
  * @todo: Decide if this should be merged with Choices or List Methods?
@@ -98,165 +105,179 @@ class ListValues
     }
 }
 
-Kirby::plugin('hananils/list-filters', [
-    'api' => [
-        'routes' => [
-            [
-                'pattern' => 'hananils/list-filters/license',
-                'action' => function () {
-                    $licenseManager = new LicenseManager(
-                        'hananils/list-filters',
-                        'List Filters',
-                        get('locale', 'en')
+Kirby::plugin(
+    'hananils/list-filters',
+    [
+        'api' => [
+            'routes' => [
+                [
+                    'pattern' => 'hananils/list-filters/license',
+                    'action' => function () {
+                        $licenseManager = new LicenseManager(
+                            'hananils/list-filters',
+                            'List Filters',
+                            get('locale', 'en')
+                        );
+
+                        return $licenseManager->toResponse();
+                    }
+                ]
+            ]
+        ],
+        'collectionFilters' => [
+            /**
+             * Returns `true` for items that include the given value (string in array).
+             */
+            'includes' => function ($collection, $field, $test, $split = true) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
                     );
 
-                    return $licenseManager->toResponse();
+                    if ($values->includes($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
                 }
-            ]
+
+                return $collection;
+            },
+            /**
+             * Returns `true` for items that include some of the given values (array intersection).
+             */
+            'includes some' => function (
+                $collection,
+                $field,
+                $test,
+                $split = true
+            ) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
+                    );
+
+                    if ($values->includesSome($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
+                }
+
+                return $collection;
+            },
+            /**
+             * Returns `true` for items that include all of the given values (array equality).
+             */
+            'includes all' => function (
+                $collection,
+                $field,
+                $test,
+                $split = true
+            ) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
+                    );
+
+                    if ($values->includesAll($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
+                }
+
+                return $collection;
+            },
+            /**
+             * Returns `true` for items that exclude the given values (string not in array).
+             */
+            'excludes' => function ($collection, $field, $test, $split = true) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
+                    );
+
+                    if ($values->excludes($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
+                }
+
+                return $collection;
+            },
+            /**
+             * Returns `true` for items that exclude some of the given values (array difference).
+             */
+            'excludes some' => function (
+                $collection,
+                $field,
+                $test,
+                $split = true
+            ) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
+                    );
+
+                    if ($values->excludesSome($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
+                }
+
+                return $collection;
+            },
+            /**
+             * Returns `true` for items that exclude all of the given values (array inequality).
+             */
+            'excludes all' => function (
+                $collection,
+                $field,
+                $test,
+                $split = true
+            ) {
+                foreach ($collection->data as $key => $item) {
+                    $values = new ListValues(
+                        $collection,
+                        $field,
+                        $item,
+                        $test,
+                        $split
+                    );
+
+                    if ($values->excludesAll($test)) {
+                        continue;
+                    }
+
+                    unset($collection->$key);
+                }
+
+                return $collection;
+            }
         ]
     ],
-    'collectionFilters' => [
-        /**
-         * Returns `true` for items that include the given value (string in array).
-         */
-        'includes' => function ($collection, $field, $test, $split = true) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->includes($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        },
-        /**
-         * Returns `true` for items that include some of the given values (array intersection).
-         */
-        'includes some' => function (
-            $collection,
-            $field,
-            $test,
-            $split = true
-        ) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->includesSome($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        },
-        /**
-         * Returns `true` for items that include all of the given values (array equality).
-         */
-        'includes all' => function ($collection, $field, $test, $split = true) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->includesAll($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        },
-        /**
-         * Returns `true` for items that exclude the given values (string not in array).
-         */
-        'excludes' => function ($collection, $field, $test, $split = true) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->excludes($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        },
-        /**
-         * Returns `true` for items that exclude some of the given values (array difference).
-         */
-        'excludes some' => function (
-            $collection,
-            $field,
-            $test,
-            $split = true
-        ) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->excludesSome($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        },
-        /**
-         * Returns `true` for items that exclude all of the given values (array inequality).
-         */
-        'excludes all' => function ($collection, $field, $test, $split = true) {
-            foreach ($collection->data as $key => $item) {
-                $values = new ListValues(
-                    $collection,
-                    $field,
-                    $item,
-                    $test,
-                    $split
-                );
-
-                if ($values->excludesAll($test)) {
-                    continue;
-                }
-
-                unset($collection->$key);
-            }
-
-            return $collection;
-        }
-    ]
-]);
+    $licenseManager->toInfo()
+);
