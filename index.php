@@ -263,10 +263,10 @@ $extends = [
 
 $name = 'hananils/list-filters';
 if (class_exists('\Kirby\Plugin\License')) {
-    Kirby::plugin($name, $extends, [], function ($plugin) use ($name) {
+    Kirby::plugin($name, $extends, license: function ($plugin) use ($name) {
         $licenseManager = new LicenseManager($name, info: $plugin->info());
 
-        return $licenseManager->toInfo();
+        return $licenseManager->toInfo($plugin);
     });
 } else {
     Kirby::plugin($name, $extends);

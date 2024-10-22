@@ -22,7 +22,7 @@
         'hananils/plus' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '10f1470d7c8a105d4ae2da3dd7aa59c7f428d6c2',
+            'reference' => 'bead68d650a8a427190601b402945d57cf81a9c7',
             'type' => 'helper',
             'install_path' => __DIR__ . '/../hananils/plus',
             'aliases' => array(

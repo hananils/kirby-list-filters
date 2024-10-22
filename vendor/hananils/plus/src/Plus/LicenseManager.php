@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use Kirby\Cms\App as Kirby;
+use Kirby\Plugin\License;
 use Kirby\Toolkit\Str;
 
 class LicenseManager
@@ -267,7 +268,7 @@ class LicenseManager
         ];
     }
 
-    public function toInfo(): array
+    public function toInfo($plugin): License
     {
         $name = 'hana+nils · ' . $this->translate('license');
         $status = 'active';
@@ -291,7 +292,7 @@ class LicenseManager
             'status' => $status
         ];
 
-        return $info;
+        return License::from($plugin, $info);
     }
 
     public function key(): string

@@ -7,15 +7,15 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:hananils/plus.git",
-                "reference": "10f1470d7c8a105d4ae2da3dd7aa59c7f428d6c2"
+                "reference": "bead68d650a8a427190601b402945d57cf81a9c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hananils/plus/zipball/10f1470d7c8a105d4ae2da3dd7aa59c7f428d6c2",
-                "reference": "10f1470d7c8a105d4ae2da3dd7aa59c7f428d6c2",
+                "url": "https://api.github.com/repos/hananils/plus/zipball/bead68d650a8a427190601b402945d57cf81a9c7",
+                "reference": "bead68d650a8a427190601b402945d57cf81a9c7",
                 "shasum": ""
             },
-            "time": "2024-10-22T11:19:32+00:00",
+            "time": "2024-10-22T12:01:37+00:00",
             "default-branch": true,
             "type": "helper",
             "installation-source": "dist",
