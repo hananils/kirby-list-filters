@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use Kirby\Cms\App as Kirby;
+use Kirby\Toolkit\Str;
 
 class LicenseManager
 {
@@ -54,13 +55,18 @@ class LicenseManager
 
     public function __construct(
         string $id,
-        string $name,
+        string $name = '',
         null|string $locale = null,
-        null|string $root = null
+        null|array $info = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
         $this->kirby = kirby();
+        $this->id = $id;
+
+        if ($name === '') {
+            $name = Str::ucwords(str_replace('hananils/', '', $id));
+        }
+
+        $this->name = $name;
 
         if ($locale === null) {
             $user = $this->kirby->user();
@@ -69,20 +75,21 @@ class LicenseManager
 
         $this->locale = $locale;
 
-        if ($root === null) {
-            $plugin = $this->kirby
-                ->system()
-                ->plugins()
-                ->find($this->id);
-            $root = $plugin->root();
+        if ($info === null) {
+            if (
+                $plugin = $this->kirby
+                    ->system()
+                    ->plugins()
+                    ->find($this->id)
+            ) {
+                $info = $plugin->info();
+            } else {
+                $info = [];
+            }
         }
 
-        if ($composer = file_get_contents($root . '/composer.json')) {
-            if ($info = json_decode($composer, true)) {
-                if (isset($info['time'])) {
-                    $this->date = $info['time'];
-                }
-            }
+        if (isset($info['time'])) {
+            $this->date = $info['time'];
         }
     }
 
@@ -225,7 +232,12 @@ class LicenseManager
             return $this->license;
         }
 
-        $file = $this->kirby->root('license') . '/' . $this->id . '.license';
+        $licensesRoot = $this->kirby->root('licenses');
+        if (!$licensesRoot) {
+            $licensesRoot = $this->kirby->root('site') . '/licenses';
+        }
+
+        $file = $licensesRoot . '/' . $this->id . '.license';
 
         if (file_exists($file)) {
             $this->license = json_decode(file_get_contents($file), true);
