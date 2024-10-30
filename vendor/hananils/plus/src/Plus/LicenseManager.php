@@ -5,9 +5,11 @@ namespace Hananils\Plus;
 use DateTime;
 use DateTimeZone;
 use Exception;
+
 use Kirby\Cms\App as Kirby;
 use Kirby\Plugin\License;
 use Kirby\Toolkit\Str;
+use function kirby;
 
 class LicenseManager
 {
@@ -22,6 +24,7 @@ class LicenseManager
     private string $id;
     private string $name;
     private string $key = '';
+    private string $hash = '';
     private null|string $date = null;
     private array $license = [];
     private string $message = '';
@@ -163,7 +166,7 @@ class LicenseManager
     public function validateDomain(): bool
     {
         $license = $this->getLicense();
-        $domain = parse_url($this->kirby->url(), PHP_URL_HOST);
+        $domain = self::normalizeDomain($this->kirby->url());
 
         if ($license['domain'] !== $domain) {
             throw new Exception(
@@ -179,7 +182,7 @@ class LicenseManager
     {
         $code = $this->parseCode();
 
-        if ($code[0] !== 'HN' || $code[1] !== $this->key()) {
+        if ($code[0] !== 'HN' || !str_starts_with($code[1], $this->key())) {
             throw new Exception(
                 $this->translate('invalid.type'),
                 code: self::INVALID_TYPE
@@ -192,7 +195,7 @@ class LicenseManager
     public function validateChecksum(): bool
     {
         $license = $this->getLicense();
-        $hash = $this->generateHash();
+        $hash = $this->hash($license);
 
         if ($hash !== $license['checksum']) {
             throw new Exception(
@@ -259,6 +262,11 @@ class LicenseManager
         return $this->message;
     }
 
+    public static function normalizeDomain(string $url): string|null
+    {
+        return parse_url($url, PHP_URL_HOST);
+    }
+
     public function toResponse(): array
     {
         return [
@@ -297,35 +305,49 @@ class LicenseManager
 
     public function key(): string
     {
-        if ($this->key === '') {
-            $this->generateKey();
+        if ($this->key !== '') {
+            return $this->key;
         }
+
+        $this->key = self::generateKey($this->name);
 
         return $this->key;
     }
 
-    private function generateKey(): self
+    public static function generateKey(string $name): string
     {
-        $key = strtoupper($this->name);
+        $key = strtoupper($name);
         $key = preg_replace('/[^BCDFGHJKLMNPQRSTVWYXZ]/', '', $key);
 
-        if (preg_match('/^[AEIOU]/', $this->name)) {
-            $key = substr($this->name, 0, 1) . $key;
+        if (preg_match('/^[AEIOU]/', $name)) {
+            $key = substr($name, 0, 1) . $key;
         }
 
-        $this->key = substr($key, 0, 4);
-
-        return $this;
+        return substr($key, 0, 4);
     }
 
-    private function generateHash(): string
+    public function hash(array $license): string
     {
-        $license = $this->getLicense();
-        $utc = new DateTimeZone('UTC');
+        if ($this->hash !== '') {
+            return $this->hash;
+        }
 
-        $activation = new DateTime($license['activation'], $utc);
-        $code = $license['code'];
-        $domain = $license['domain'];
+        $this->hash = self::generateHash(
+            $license['activation'],
+            $license['code'],
+            $license['domain']
+        );
+
+        return $this->hash;
+    }
+
+    public static function generateHash(
+        string $activation,
+        string $code,
+        string $domain
+    ): string {
+        $utc = new DateTimeZone('UTC');
+        $activation = new DateTime($activation, $utc);
 
         return md5($activation->getTimestamp() . $code . $domain);
     }

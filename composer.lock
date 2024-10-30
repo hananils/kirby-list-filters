@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:hananils/plus.git",
-                "reference": "bead68d650a8a427190601b402945d57cf81a9c7"
+                "reference": "8525cbefa9f88cb71f5a8fe201e21f9ad6779497"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hananils/plus/zipball/bead68d650a8a427190601b402945d57cf81a9c7",
-                "reference": "bead68d650a8a427190601b402945d57cf81a9c7",
+                "url": "https://api.github.com/repos/hananils/plus/zipball/8525cbefa9f88cb71f5a8fe201e21f9ad6779497",
+                "reference": "8525cbefa9f88cb71f5a8fe201e21f9ad6779497",
                 "shasum": ""
             },
             "default-branch": true,
@@ -41,7 +41,7 @@
                 "source": "https://github.com/hananils/plus/tree/main",
                 "issues": "https://github.com/hananils/plus/issues"
             },
-            "time": "2024-10-22T12:01:37+00:00"
+            "time": "2024-10-28T17:31:58+00:00"
         }
     ],
     "packages-dev": [],
