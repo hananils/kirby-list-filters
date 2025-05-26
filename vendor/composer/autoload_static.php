@@ -22,7 +22,6 @@ class ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Hananils\\Plus\\LicenseManager' => __DIR__ . '/..' . '/hananils/plus/src/Plus/LicenseManager.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

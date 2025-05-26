@@ -80,12 +80,7 @@ class LicenseManager
         $this->locale = $locale;
 
         if ($info === null) {
-            if (
-                $plugin = $this->kirby
-                    ->system()
-                    ->plugins()
-                    ->find($this->id)
-            ) {
+            if ($plugin = $this->kirby->system()->plugins()->find($this->id)) {
                 $info = $plugin->info();
             } else {
                 $info = [];
@@ -99,7 +94,11 @@ class LicenseManager
 
     private function translate($key)
     {
-        return $this->translations[$this->locale][$key];
+        if (array_key_exists($this->locale, $this->translations)) {
+            return $this->translations[$this->locale][$key];
+        }
+
+        return $this->translations['en'][$key];
     }
 
     public function validate()

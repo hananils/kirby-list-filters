@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Hananils\\Plus\\LicenseManager' => $vendorDir . '/hananils/plus/src/Plus/LicenseManager.php',
 );

@@ -2,14 +2,23 @@
     "name": "hananils/kirby-list-filters",
     "description": "Kirby allows for the storage of value lists using its select, tags or checkboxes fields but it doesn't offer ways to filter items by those values. List Filters closes this gap by providing includes and excludes collection filters.",
     "license": "proprietary",
+    "type": "kirby-plugin",
     "version": "1.0.0",
-    "homepage": "https://kirby.hananils.de/plugins/list-filters",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
             "email": "buero@hananils.de"
         }
     ],
+    "homepage": "https://kirby.hananils.de/plugins/list-filters",
+    "require": {
+        "php": "^8.2",
+        "hananils/plus": "dev-main"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.47",
+        "rector/rector": "^2.0"
+    },
     "repositories": [
         {
             "type": "vcs",
@@ -17,10 +26,9 @@
         }
     ],
     "config": {
-        "optimize-autoloader": true
-    },
-    "require": {
-        "hananils/plus": "dev-main"
-    },
-    "type": "kirby-plugin"
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    }
 }
