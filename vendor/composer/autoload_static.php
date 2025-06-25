@@ -6,20 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b
 {
-    public static $prefixLengthsPsr4 = array (
-        'H' => 
-        array (
-            'Hananils\\' => 9,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'Hananils\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/hananils/plus/src',
-        ),
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -27,8 +13,6 @@ class ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit5a14daf6d1ba42b6ba744b2f23d1fa6b::$classMap;
 
         }, null, ClassLoader::class);

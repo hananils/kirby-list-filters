@@ -2,9 +2,7 @@
 
 namespace Hananils;
 
-use Hananils\Plus\LicenseManager;
 use Kirby\Cms\app as Kirby;
-use Kirby\Data\Json;
 use Kirby\Toolkit\Str;
 
 /**
@@ -99,22 +97,7 @@ class ListValues
     }
 }
 
-$extends = [
-    'api' => [
-        'routes' => [
-            [
-                'pattern' => 'hananils/list-filters/license',
-                'action' => function () {
-                    $licenseManager = new LicenseManager(
-                        'hananils/list-filters',
-                        locale: get('locale', 'en')
-                    );
-
-                    return $licenseManager->toResponse();
-                }
-            ]
-        ]
-    ],
+Kirby::plugin('hananils/list-filters', [
     'collectionFilters' => [
         /**
          * Returns `true` for items that include the given value (string in array).
@@ -259,15 +242,4 @@ $extends = [
             return $collection;
         }
     ]
-];
-
-$name = 'hananils/list-filters';
-if (class_exists('\Kirby\Plugin\License')) {
-    Kirby::plugin($name, $extends, license: function ($plugin) use ($name) {
-        $licenseManager = new LicenseManager($name, info: $plugin->info());
-
-        return $licenseManager->toInfo($plugin);
-    });
-} else {
-    Kirby::plugin($name, $extends);
-}
+]);
