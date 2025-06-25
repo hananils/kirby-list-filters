@@ -2,6 +2,9 @@
 
 Kirby allows for the storage of value lists using its select, tags or checkboxes fields but it doesn't offer ways to filter items by those values. List Filters closes this gap by providing `includes` and `excludes` collection filters.
 
+> [!NOTE]
+> Please check out the online documentation at [kirby.hananils.de/plugins/list-filters](https://kirby.hananils.de/plugins/list-filters) for further information.
+
 # Usage
 
 The plugin adds the following filters:
