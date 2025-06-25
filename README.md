@@ -21,7 +21,7 @@ $plugins = $plugins->filterBy('category', 'includes all', ['field', 'section']);
 
 ## Options
 
-- `'hananils.list-filters.insensitive`: defaults to `true`, set to `false` if you want to enable case sensitive matching.
+- `hananils.list-filters.insensitive`: defaults to `true`, set to `false` if you want to enable case sensitive matching.
 
 ## Installation
 
