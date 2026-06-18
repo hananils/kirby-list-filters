@@ -2,7 +2,7 @@
 
 namespace Hananils;
 
-use Kirby\Cms\app as Kirby;
+use Kirby\Cms\App as Kirby;
 use Kirby\Toolkit\Str;
 
 /**
