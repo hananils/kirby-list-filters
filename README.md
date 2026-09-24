@@ -58,7 +58,6 @@ Where possible, files contain inline annotations. For extended documentation, pl
 ### Reference
 
 - [Collection Filters](https://kirby.hananils.de/plugins/list-filters/collection-filters)
-- [Routes](https://kirby.hananils.de/plugins/list-filters/routes)
 
 ## License
 
