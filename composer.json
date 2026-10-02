@@ -3,7 +3,7 @@
     "description": "Kirby allows for the storage of value lists using its select, tags or checkboxes fields but it doesn't offer ways to filter items by those values. List Filters closes this gap by providing includes and excludes collection filters.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
@@ -20,5 +20,8 @@
         "allow-plugins": {
             "getkirby/composer-installer": true
         }
+    },
+    "extra": {
+        "installer-name": "list-filters"
     }
 }
